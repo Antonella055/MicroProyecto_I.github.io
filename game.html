@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="stylesheet" href="styleGame.css">
+</head>
+<body>
+    <main>
+        <h1 class="visually-hidden">Simon Game</h1>
+        <section class="game-score-container" aria-label="Game Score Section">
+            <div class="game-score-wrapper">
+                <div class="score-header">
+                    <img
+                        loading="lazy"
+                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/e73c3d9c-e628-406d-b58a-a16e42c93229?placeholderIfAbsent=true&apiKey=9d59b51cf67643c49323759cacb2fdc0"
+                        class="game-logo"
+                        alt="Simon Game Logo"
+                        width="123"
+                        height="101"
+                    />
+                    <div class="current-score">
+                        <div class="score-label">Score:</div>
+                        <div class="score-value" aria-live="polite" id="current-score">9</div>
+                    </div>
+                </div>
+                <div class="game-visual" role="region" aria-label="Interactive Simon Game Visual">
+                    <div class="game-quadrant game-quadrant-blue" tabindex="0" aria-label="Blue quadrant" data-color="blue"></div>
+                    <div class="game-quadrant game-quadrant-red" tabindex="0" aria-label="Red quadrant" data-color="red"></div>
+                    <div class="game-quadrant game-quadrant-yellow" tabindex="0" aria-label="Yellow quadrant" data-color="yellow"></div>
+                    <div class="game-quadrant game-quadrant-green" tabindex="0" aria-label="Green quadrant" data-color="green"></div>
+                    <div class="quadrant-divider quadrant-divider-horizontal" aria-hidden="true"></div>
+                    <div class="quadrant-divider quadrant-divider-vertical" aria-hidden="true"></div>
+                    <button class="start-button" aria-label="Start Game">Start</button>
+                </div>
+                <div class="high-score">
+                    <div class="high-score-label">High score:</div>
+                    <div class="high-score-value" aria-live="polite" id="high-score">9</div>
+                </div>
+            </div>
+        </section>
+    </main>
+  
+</body>
+</html>

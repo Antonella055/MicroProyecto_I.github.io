@@ -1,0 +1,176 @@
+:root {
+    --background-color: rgba(32, 27, 27, 1);
+    --text-color: rgba(255, 255, 255, 0.77);
+    --font-size-large: 32px;
+    --font-family-score: 'Zen Dots', sans-serif;
+    --font-family-value: 'Unna', sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+.game-score-container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-size: var(--font-size-large);
+    font-weight: 400;
+    text-align: center;
+}
+.game-score-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 60px 60px 20px;
+}
+.score-header {
+    align-self: start;
+    display: flex;
+    width: 700px;
+    max-width: 100%;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+.game-logo {
+    aspect-ratio: 1.22;
+    object-fit: contain;
+    object-position: center;
+    width: 100px;
+    background-color: rgba(80, 74, 78, 0.63);
+    max-width: 100%;
+}
+.current-score {
+    display: flex;
+    gap: 30px 50px;
+    align-items: baseline;
+}
+.score-label, .high-score-label {
+    font-family: var(--font-family-score);
+}
+.score-value, .high-score-value {
+    font-family: var(--font-family-value);
+}
+.game-visual {
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    margin-top: 35px;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.game-quadrant {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    cursor: pointer;
+}
+.game-quadrant:focus {
+    outline: 3px solid white;
+    outline-offset: -3px;
+}
+.game-quadrant-blue {
+    top: 0;
+    left: 0;
+    background-color: #394a92db;
+}
+.game-quadrant-red {
+    top: 0;
+    right: 0;
+    background-color: #ac4444;
+}
+.game-quadrant-yellow {
+    bottom: 0;
+    left: 0;
+    background-color: #ffff84;
+}
+.game-quadrant-green {
+    bottom: 0;
+    right: 0;
+    background-color: #60c760;
+}
+.quadrant-divider {
+    position: absolute;
+    background-color: var(--background-color);
+    z-index: 1;
+}
+.quadrant-divider-horizontal {
+    width: 100%;
+    height: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.quadrant-divider-vertical {
+    width: 4px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.start-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:rgb(80, 74, 78);
+    color: #bfbfbf;
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    font-size: 20px;
+    font-family: var(--font-family-score);
+    cursor: pointer;
+    z-index: 10;
+}
+.start-button:focus {
+    outline: 3px solid white;
+    outline-offset: 2px;
+}
+.high-score {
+    display: flex;
+    margin-top: 25px;
+    width: 300px;
+    max-width: 100%;
+    gap: 30px 50px;
+    justify-content: space-between;
+}
+@media (max-width: 991px) {
+    .game-score-wrapper {
+        max-width: 100%;
+        padding: 15px;
+    }
+    .score-header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .current-score {
+        margin-top: 15px;
+    }
+    .game-visual {
+        margin-top: 15px;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .start-button, .game-quadrant {
+        transition: none;
+    }
+}

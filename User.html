@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingreso de Usuario</title>
+    <link rel="stylesheet" href="styleUser.css">
+</head>
+<body>
+    <main class="user-input-container">
+        <div class="user-input-wrapper">
+            <div class="user-input-content">
+                <img
+                    loading="lazy"
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/ae1bd945748f2a516c30cbb3f75e6fa058a05500e27f6f04af61ad86eaacbd44?placeholderIfAbsent=true&apiKey=9d59b51cf67643c49323759cacb2fdc0"
+                    class="user-avatar"
+                    alt="Avatar de usuario"
+                />
+                <h1 class="user-title">Usuario</h1>
+                <form class="user-input-form" id="userForm">
+                    <div class="input-group">
+                        <label for="username" class="visually-hidden">Ingrese su nombre de usuario</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            class="user-input-field"
+                            placeholder="Ingrese su nombre de usuario"
+                            aria-label="Ingrese su nombre de usuario"
+                            required
+                        />
+                        <button type="submit" class="submit-button" aria-label="Aceptar">
+                            Aceptar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

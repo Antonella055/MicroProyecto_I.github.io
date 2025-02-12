@@ -1,0 +1,91 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Unna, serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.game-menu {
+    background-color: rgba(80, 74, 78, 0.33);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #fff;
+    text-align: center;
+}
+
+.menu-container {
+    background-color: #504a4e;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+}
+
+.game-logo {
+    width: 100%;
+    max-width: 286px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.menu-button {
+    background-color: rgba(12, 11, 11, 0.42);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 2.5rem;
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+}
+
+.menu-button:hover,
+.menu-button:focus {
+    background-color: rgba(12, 11, 11, 0.6);
+}
+
+.menu-button:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+    .menu-button {
+        font-size: 2rem;
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+    .menu-button {
+        transition: none;
+    }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
