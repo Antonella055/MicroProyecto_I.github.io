@@ -1,0 +1,198 @@
+:root {
+    --background-color: rgba(32, 27, 27, 1);
+    --text-color: rgba(255, 255, 255, 0.77);
+    --secondary-bg: rgba(80, 74, 78, 0.41);
+    --button-bg: rgba(12, 11, 11, 0.42);
+    --border-color: rgba(0, 0, 0, 1);
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Unna', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.game-container,
+.ranking-container {
+    background-color: var(--secondary-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem;
+}
+
+.game-content,
+.ranking-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-info,
+.points-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.username {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.user-icon,
+.user-badge,
+.points-icon {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.user-badge:hover,
+.user-badge:focus {
+    transform: scale(1.1);
+}
+
+.ranking-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.game-logo {
+    max-width: 100%;
+    height: auto;
+    margin-right: 1rem;
+}
+
+.ranking-title {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.start-game-btn,
+.back-btn {
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.start-game-btn:hover,
+.start-game-btn:focus,
+.back-btn:hover,
+.back-btn:focus {
+    background-color: rgba(12, 11, 11, 0.6);
+    transform: scale(1.05);
+}
+
+.points-display {
+    background-color: var(--button-bg);
+    border: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+}
+
+.ranking-list ol {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+.ranking-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--button-bg);
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.ranking-list .username {
+    font-weight: bold;
+}
+
+.ranking-list .score {
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .game-container,
+    .ranking-container {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .user-info,
+    .points-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .username {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .start-game-btn,
+    .back-btn,
+    .points-display {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .ranking-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .game-logo {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .user-badge:hover,
+    .user-badge:focus,
+    .start-game-btn:hover,
+    .start-game-btn:focus,
+    .back-btn:hover,
+    .back-btn:focus {
+        transform: none;
+    }
+}

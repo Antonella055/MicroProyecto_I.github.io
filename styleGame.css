@@ -1,10 +1,12 @@
 :root {
     --background-color: rgba(32, 27, 27, 1);
     --text-color: rgba(255, 255, 255, 0.77);
+    --button-background: rgba(12, 11, 11, 0.42);
     --font-size-large: 32px;
     --font-family-score: 'Zen Dots', sans-serif;
     --font-family-value: 'Unna', sans-serif;
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -12,6 +14,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
 }
+
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -23,6 +26,7 @@ body {
     white-space: nowrap;
     border: 0;
 }
+
 .game-score-container {
     display: flex;
     flex-direction: column;
@@ -31,13 +35,16 @@ body {
     font-weight: 400;
     text-align: center;
 }
+
 .game-score-wrapper {
     display: flex;
     width: 100%;
     flex-direction: column;
     align-items: center;
     padding: 30px 60px 60px 20px;
+    position: relative;
 }
+
 .score-header {
     align-self: start;
     display: flex;
@@ -47,87 +54,114 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
 .game-logo {
     aspect-ratio: 1.22;
     object-fit: contain;
     object-position: center;
     width: 100px;
-    background-color: rgba(80, 74, 78, 0.63);
+    background-color: rgba(37, 173, 200, 0.63);
     max-width: 100%;
 }
+
 .current-score {
     display: flex;
     gap: 30px 50px;
     align-items: baseline;
 }
+.opt-btn {
+    background-color: var(--button-background);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
 .score-label, .high-score-label {
     font-family: var(--font-family-score);
 }
+
 .score-value, .high-score-value {
     font-family: var(--font-family-value);
 }
+
 .game-visual {
-    width: 600px;
-    height: 600px;
+    width: 360px;
+    height: 360px;
     border-radius: 50%;
     margin-top: 35px;
     max-width: 100%;
     position: relative;
     overflow: hidden;
 }
+
 .game-quadrant {
     position: absolute;
     width: 50%;
     height: 50%;
     cursor: pointer;
 }
+
 .game-quadrant:focus {
     outline: 3px solid white;
     outline-offset: -3px;
 }
+
 .game-quadrant-blue {
     top: 0;
     left: 0;
     background-color: #394a92db;
 }
+
 .game-quadrant-red {
     top: 0;
     right: 0;
     background-color: #ac4444;
 }
+
 .game-quadrant-yellow {
     bottom: 0;
     left: 0;
     background-color: #ffff84;
 }
+
 .game-quadrant-green {
     bottom: 0;
     right: 0;
     background-color: #60c760;
 }
+
 .quadrant-divider {
     position: absolute;
     background-color: var(--background-color);
     z-index: 1;
 }
+
 .quadrant-divider-horizontal {
     width: 100%;
     height: 4px;
     top: 50%;
     transform: translateY(-50%);
 }
+
 .quadrant-divider-vertical {
     width: 4px;
     height: 100%;
     left: 50%;
     transform: translateX(-50%);
 }
+
 .start-button {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color:rgb(80, 74, 78);
+    background-color: rgb(80, 74, 78);
     color: #bfbfbf;
     border: none;
     border-radius: 50%;
@@ -138,10 +172,12 @@ body {
     cursor: pointer;
     z-index: 10;
 }
+
 .start-button:focus {
     outline: 3px solid white;
     outline-offset: 2px;
 }
+
 .high-score {
     display: flex;
     margin-top: 25px;
@@ -150,6 +186,33 @@ body {
     gap: 30px 50px;
     justify-content: space-between;
 }
+
+.action-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover,
+.action-button:focus {
+    background-color: #45a049;
+}
+
+.action-button:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
 @media (max-width: 991px) {
     .game-score-wrapper {
         max-width: 100%;
@@ -169,8 +232,11 @@ body {
         aspect-ratio: 1 / 1;
     }
 }
+
 @media (prefers-reduced-motion: reduce) {
-    .start-button, .game-quadrant {
+    .start-button,
+    .game-quadrant,
+    .action-button {
         transition: none;
     }
 }
