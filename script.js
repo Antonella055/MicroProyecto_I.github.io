@@ -13,6 +13,7 @@ let playerSequence = [];
 let round = 0;
 let currentScore = 0;
 let maxScore = 0;
+let previousPlayerName = "";
 
 const playSound = (soundFile) => {
     const audio = new Audio(soundFile);
@@ -23,7 +24,7 @@ const highlightButton = (button) => {
     button.classList.add("active");
     setTimeout(() => {
         button.classList.remove("active");
-    }, 500); 
+    }, 500);
 };
 
 const generateSequence = () => {
@@ -41,7 +42,7 @@ const showSequence = () => {
         if (i >= sequence.length) {
             clearInterval(interval);
         }
-    }, 800); 
+    }, 1000);
 };
 
 const nextRound = () => {
@@ -101,6 +102,20 @@ startButton.addEventListener("click", () => {
         alert("Por favor, ingresa tu nombre antes de comenzar.");
         return;
     }
+
+    if (playerName !== previousPlayerName) {
+        const scores = JSON.parse(localStorage.getItem("scores")) || [];
+        const playerExists = scores.some(score => score.name === playerName);
+
+        if (!playerExists) {
+            maxScoreElement.textContent = 0;
+        } else {
+            updateMaxScore(playerName);
+        }
+
+        previousPlayerName = playerName;
+    }
+
     if (!isGameActive) {
         isGameActive = true;
         sequence = [];
@@ -118,7 +133,6 @@ startButton.addEventListener("click", () => {
 
 resetButton.addEventListener("click", () => {
     if (isGameActive) {
-        nameInput.value = "";
         saveScore();
     }
     isGameActive = false;
