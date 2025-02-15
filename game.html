@@ -1,39 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
-    <link rel="stylesheet" href="styleGame.css">
+    <title>Simon Dice - Juego</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <main>
-        <h1 class="visually-hidden">Simon Game</h1>
-        <section class="game-score-container" aria-label="Game Score Section">
-          <div class="game-score-wrapper">
-            <header class="score-header">
-                <a href="menuSecundario.html" class="opt-btn" aria-label="Ir a menu Secundario">Opciones</a>
-                <div class="current-score">
-                    <h3 id="current-score-label" class="score-label">Score:</h3>
-                    <div class="score-value" aria-labelledby="current-score-label">9</div>
-                </div>
-            </header>
-                <div class="game-visual" role="region" aria-label="Interactive Simon Game Visual">
-                    <div class="game-quadrant game-quadrant-blue" tabindex="0" aria-label="Blue quadrant" data-color="blue"></div>
-                    <div class="game-quadrant game-quadrant-red" tabindex="0" aria-label="Red quadrant" data-color="red"></div>
-                    <div class="game-quadrant game-quadrant-yellow" tabindex="0" aria-label="Yellow quadrant" data-color="yellow"></div>
-                    <div class="game-quadrant game-quadrant-green" tabindex="0" aria-label="Green quadrant" data-color="green"></div>
-                    <div class="quadrant-divider quadrant-divider-horizontal" aria-hidden="true"></div>
-                    <div class="quadrant-divider quadrant-divider-vertical" aria-hidden="true"></div>
-                    <button class="start-button" aria-label="Start Game">Start</button>
-                </div>
-                <div class="high-score">
-                    <div class="high-score-label">High score:</div>
-                    <div class="high-score-value" aria-live="polite" id="high-score">9</div>
-                </div>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Simon Dice </h1>
+            <div class="score-display">
+                <span id="score">Ronda: 0</span>
             </div>
-        </section>
-    </main>
-  
+        </header>
+
+        <div class="game__container">
+            <div class="color_button" id="green" data-sound="Sounds/Sound1.mp3"></div>
+            <div class="color_button" id="red" data-sound="Sounds/Sound2.mp3"></div>
+            <div class="color_button" id="yellow" data-sound="Sounds/Sound3.mp3"></div>
+            <div class="color_button" id="blue" data-sound="Sounds/Sound4.mp3"></div>
+        </div>
+
+        <div class="form">
+            <input id="name-input" class="form__input" type="text" placeholder="Ingresa tu nombre" required>
+        </div>
+
+        <div class="actions">
+            <button id="start" class="start-button">Iniciar</button>
+            <button id="reset" class="reset-button">Reiniciar</button>
+            <a href="index.html" class="exit-button">Salir</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
