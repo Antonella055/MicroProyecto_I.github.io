@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,43 +7,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <div class="container">
-        <header class="header">
-            <h1 class="title">Historial de Usuarios</h1>
-        </header>
-
-        <div class="scores">
-            <h2>Mejores Puntuaciones <img src = "trofeo.png" class = "trophy-icon"></h2>
-            <table id="score-table">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Puntuación</th>
-                    </tr>
-                </thead>
-                <tbody id="score-list"></tbody>
-            </table>
-        </div>
-
-        <div class="actions">
-            <a href="index.html" class="exit-button">Volver al Inicio</a>
-        </div>
+        <main id="main-content" role="main">
+            <section class="scores" aria-labelledby="scores-heading">
+                <h2 id="scores-heading">Mejores Puntuaciones</h2>
+                <div class="logo-container" aria-hidden="true">
+                    <img src="trofeo.png" alt="" class="centered-image trophy-icon">
+                </div>
+                <table id="score-table" aria-label="Tabla de puntuaciones">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Puntuación</th>
+                        </tr>
+                    </thead>
+                    <tbody id="score-list"></tbody>
+                </table>
+            </section>
+            <nav class="actions" aria-label="Navegación principal">
+                <a href="index.html" class="exit-button">Volver al Inicio</a>
+            </nav>
+        </main>
     </div>
-
     <script>
         const updateScoreTable = () => {
             const scores = JSON.parse(localStorage.getItem("scores")) || [];
             const scoreList = document.getElementById("score-list");
-            scoreList.innerHTML = scores
-                .sort((a, b) => b.score - a.score)
-                .map((score) => `<tr><td>${score.name}</td><td>${score.score}</td></tr>`)
-                .join("");
+            if (scoreList) {
+                scoreList.innerHTML = scores
+                    .sort((a, b) => b.score - a.score)
+                    .map((score) => `
+                        <tr>
+                            <td>${score.name}</td>
+                            <td>${score.score}</td>
+                        </tr>
+                    `)
+                    .join("");
+            }
         };
-
-        updateScoreTable();
+        document.addEventListener('DOMContentLoaded', updateScoreTable);
     </script>
 </body>
-
 </html>

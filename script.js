@@ -1,16 +1,18 @@
-
-let sequence = [];
-let playerSequence = [];
-let round = 0;
-let isGameActive = false;
-
-
 const colorButtons = document.querySelectorAll(".color_button");
 const startButton = document.getElementById("start");
 const resetButton = document.getElementById("reset");
+const outButton = document.getElementById("exit-button");
 const scoreDisplay = document.getElementById("score");
 const nameInput = document.getElementById("name-input");
-const scoreList = document.getElementById("score-list");
+const currentScoreElement = document.getElementById("current-score");
+const maxScoreElement = document.getElementById("max-score");
+
+let isGameActive = false;
+let sequence = [];
+let playerSequence = [];
+let round = 0;
+let currentScore = 0;
+let maxScore = 0;
 
 const playSound = (soundFile) => {
     const audio = new Audio(soundFile);
@@ -21,7 +23,7 @@ const highlightButton = (button) => {
     button.classList.add("active");
     setTimeout(() => {
         button.classList.remove("active");
-    }, 300);
+    }, 500); 
 };
 
 const generateSequence = () => {
@@ -39,9 +41,59 @@ const showSequence = () => {
         if (i >= sequence.length) {
             clearInterval(interval);
         }
-    }, 600);
+    }, 800); 
 };
 
+const nextRound = () => {
+    round++;
+    scoreDisplay.textContent = `Ronda: ${round}`;
+    generateSequence();
+    showSequence();
+    playerSequence = [];
+};
+
+const checkSequence = () => {
+    for (let i = 0; i < playerSequence.length; i++) {
+        if (playerSequence[i] !== sequence[i]) {
+            endGame();
+            return;
+        }
+    }
+    if (playerSequence.length === sequence.length) {
+        currentScore += 10;
+        currentScoreElement.textContent = currentScore;
+        setTimeout(() => {
+            nextRound();
+        }, 1000);
+    }
+};
+
+const endGame = () => {
+    isGameActive = false;
+    alert(`¡Perdiste! Llegaste a la ronda ${round}.`);
+    saveScore();
+    startButton.disabled = false;
+    resetButton.disabled = true;
+    currentScore = 0;
+    currentScoreElement.textContent = currentScore;
+};
+
+const saveScore = () => {
+    const playerName = nameInput.value.trim();
+    if (playerName) {
+        const scores = JSON.parse(localStorage.getItem("scores")) || [];
+        scores.push({ name: playerName, score: currentScore });
+        localStorage.setItem("scores", JSON.stringify(scores));
+        updateMaxScore(playerName);
+    }
+};
+
+const updateMaxScore = (playerName) => {
+    const scores = JSON.parse(localStorage.getItem("scores")) || [];
+    const playerScores = scores.filter(score => score.name === playerName);
+    const maxScore = playerScores.reduce((max, score) => Math.max(max, score.score), 0);
+    maxScoreElement.textContent = maxScore;
+};
 
 startButton.addEventListener("click", () => {
     const playerName = nameInput.value.trim();
@@ -54,33 +106,49 @@ startButton.addEventListener("click", () => {
         sequence = [];
         playerSequence = [];
         round = 0;
+        currentScore = 0;
         scoreDisplay.textContent = `Ronda: ${round}`;
+        currentScoreElement.textContent = currentScore;
         startButton.disabled = true;
         resetButton.disabled = false;
+        updateMaxScore(playerName);
         nextRound();
     }
 });
 
-
 resetButton.addEventListener("click", () => {
+    if (isGameActive) {
+        nameInput.value = "";
+        saveScore();
+    }
     isGameActive = false;
     sequence = [];
     playerSequence = [];
     round = 0;
+    currentScore = 0;
     scoreDisplay.textContent = `Ronda: ${round}`;
+    currentScoreElement.textContent = currentScore;
     startButton.disabled = false;
     resetButton.disabled = true;
 });
 
-
-const nextRound = () => {
-    round++;
-    scoreDisplay.textContent = `Ronda: ${round}`;
-    generateSequence();
-    showSequence();
+outButton.addEventListener("click", () => {
+    if (isGameActive) {
+        saveScore();
+    }
+    isGameActive = false;
+    sequence = [];
     playerSequence = [];
-};
+    round = 0;
+    currentScore = 0;
+    maxScore = 0;
+    scoreDisplay.textContent = `Ronda: ${round}`;
+    currentScoreElement.textContent = currentScore;
+    startButton.disabled = false;
+    resetButton.disabled = true;
 
+    window.location.href = "index.html";
+});
 
 colorButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -92,51 +160,3 @@ colorButtons.forEach((button) => {
         }
     });
 });
-
-
-const checkSequence = () => {
-    for (let i = 0; i < playerSequence.length; i++) {
-        if (playerSequence[i] !== sequence[i]) {
-            endGame();
-            return;
-        }
-    }
-    if (playerSequence.length === sequence.length) {
-        setTimeout(() => {
-            nextRound();
-        }, 1000);
-    }
-};
-
-
-const endGame = () => {
-    isGameActive = false;
-    alert(`¡Perdiste! Llegaste a la ronda ${round}.`);
-    saveScore();
-    startButton.disabled = false;
-    resetButton.disabled = true;
-    nameInput.value = "";
-};
-
-
-const saveScore = () => {
-    const playerName = nameInput.value.trim();
-    if (playerName) {
-        const scores = JSON.parse(localStorage.getItem("scores")) || [];
-        scores.push({ name: playerName, score: round });
-        localStorage.setItem("scores", JSON.stringify(scores));
-        updateScoreTable();
-    }
-};
-
-
-const updateScoreTable = () => {
-    const scores = JSON.parse(localStorage.getItem("scores")) || [];
-    scoreList.innerHTML = scores
-        .sort((a, b) => b.score - a.score)
-        .map((score) => `<tr><td>${score.name}</td><td>${score.score}</td></tr>`)
-        .join("");
-};
-
-
-updateScoreTable();
